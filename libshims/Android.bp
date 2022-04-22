@@ -21,3 +21,85 @@ cc_library_shared {
     compile_multilib: "64",
     vendor: true
 }
+
+// Additional
+cc_library_shared {
+    name: "libshims_binder",
+    proprietary: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "libshims_binder.cpp",
+    ],
+    cflags: [
+        "-Werror",
+        "-Wextra",
+        "-Wall",
+    ],
+    shared_libs: [
+        "libutils",
+    ],
+}
+
+// libandroid
+cc_library_shared {
+    name: "libshims_android",
+    proprietary: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "libshims_android.cpp",
+    ],
+    cflags: [
+        "-Werror",
+        "-Wextra",
+        "-Wall",
+    ],
+    shared_libs: [
+        "libutils",
+    ],
+}
+
+// libgui
+cc_library_shared {
+    name: "libshims_gui",
+    proprietary: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "libshims_gui.cpp",
+    ],
+    cflags: [
+        "-Werror",
+        "-Wextra",
+        "-Wall",
+    ],
+    shared_libs: [
+        "libgui_vendor",
+    ],
+}
+
+// libshim_camera
+cc_library_shared {
+    name: "libshims_ui",
+    srcs: ["libshims_ui.cpp"],
+    shared_libs: ["libui"],
+    vendor: true,
+    compile_multilib: "32",
+}
+
+cc_library {
+    name: "libshim_dpmframework",
+    srcs: [
+        "dpm/strdup16to8.cpp",
+        "dpm/strdup8to16.cpp",
+    ],
+}
+
+cc_library_shared {
+    name: "libshim_imsvideocodec",
+    shared_libs: [
+        "libgui",
+        "libutils",
+    ],
+    srcs: [
+        "ims/libgui.cpp"
+    ],
+}
